@@ -96,7 +96,7 @@ public class Keyers implements NativeKeyListener {
             }
         };
 
-        timer.scheduleAtFixedRate(timertask, 0, dit+dah);
+        timer.scheduleAtFixedRate(timertask, 0, dit);
         
 	}
 

@@ -14,8 +14,6 @@ public class Sidetone {
 	//I am going to move this somewhere else.
 	public static int hz = 600;
 	
-	//This is the constructor of the class. Whenever this class is called, it must take in 3 parameters.
-	//The frequency of the sidetone, the duration is milliseconds, and volume.
 	public static void transmit(int Hz, int msecs, double vol)
 			throws LineUnavailableException {
 				if (Hz <= 0)
@@ -35,10 +33,10 @@ public class Sidetone {
 				}
 
 				// shape the front and back 10ms of the wave form
-				for (int i=0; i < SAMPLE_RATE / 100.0 && i < buf.length / 2; i++) {
+				/*for (int i=0; i < SAMPLE_RATE / 100.0 && i < buf.length / 2; i++) {
 					buf[i] = (byte)(buf[i] * i / (SAMPLE_RATE / 100.0));
 					buf[buf.length-1-i] = (byte)(buf[buf.length-1-i] * i / (SAMPLE_RATE / 100.0));
-				}
+				}*/
 
 				AudioFormat audioformat = new AudioFormat(SAMPLE_RATE,8,1,true,false);
 				SourceDataLine sdl = AudioSystem.getSourceDataLine(audioformat);

@@ -6,15 +6,17 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
 public class Decode {
-	public static String letter = ".--";
+	public static String letter = "-.-.-.";
 	
-	public static void main(String[] args) throws AWTException {
+	public static void main(String[] args) throws AWTException, InterruptedException {
+		
 		new Decode();
 	}
 	
 	Decode() throws AWTException {
 		//Morse code lookup table
 		switch (letter) {
+			//The alphabet (A to Z)
 			case ".-":   type('A'); break;
 			case "-...": type('B'); break;
 			case "-.-.": type('C'); break;
@@ -41,6 +43,29 @@ public class Decode {
 			case "-..-": type('X'); break;
 			case "-.--": type('Y'); break;
 			case "--..": type('Z'); break;
+			
+			//Numbers
+			case ".----": type('1'); break;
+			case "..---": type('2'); break;
+			case "...--": type('3'); break;
+			case "....-": type('4'); break;
+			case ".....": type('5'); break;
+			case "-....": type('6'); break;
+			case "--...": type('7'); break;
+			case "---..": type('8'); break;
+			case "----.": type('9'); break;
+			case "-----": type('0'); break;
+			
+			//Punctuation
+			case ".-.-.-": type('.'); break;
+			case "--..--": type(','); break;
+			case "..--..": type('?'); break;
+			case "-.-.--": type('!'); break;
+			case "-....-": type('-'); break;
+			case ".----.": type('\''); break;
+			case ".-..-.": type('"'); break;
+			case "---...": type(':'); break;
+			case "-.-.-.": type(';'); break;
 		}
 	}
 	
@@ -49,11 +74,46 @@ public class Decode {
 		//keyboard keystrokes a valid letter is sent
 		Robot robot = new Robot();
 		
-		//The following 4 lines will type a capital
-		//letter from the lookup table.
-		robot.keyPress(KeyEvent.VK_SHIFT);
-		robot.keyPress(ch);
-		robot.keyRelease(ch);
-		robot.keyRelease(KeyEvent.VK_SHIFT);
+		switch(ch) {
+		case '\'':
+			robot.keyPress(KeyEvent.VK_QUOTE);
+			robot.keyRelease(KeyEvent.VK_QUOTE);
+			System.out.println(ch);
+			break;
+		case '?':
+			robot.keyPress(KeyEvent.VK_SHIFT);
+			robot.keyPress(KeyEvent.VK_SLASH);
+			robot.keyRelease(KeyEvent.VK_SLASH);
+			robot.keyRelease(KeyEvent.VK_SHIFT);
+			break;
+		case '!':
+			robot.keyPress(KeyEvent.VK_SHIFT);
+			robot.keyPress(KeyEvent.VK_1);
+			robot.keyRelease(KeyEvent.VK_1);
+			robot.keyRelease(KeyEvent.VK_SHIFT);
+			break;
+		case '"':
+			robot.keyPress(KeyEvent.VK_SHIFT);
+			robot.keyPress(KeyEvent.VK_QUOTE);
+			robot.keyRelease(KeyEvent.VK_QUOTE);
+			robot.keyRelease(KeyEvent.VK_SHIFT);
+			break;
+		case ':':
+			robot.keyPress(KeyEvent.VK_SHIFT);
+			robot.keyPress(KeyEvent.VK_SEMICOLON);
+			robot.keyRelease(KeyEvent.VK_SEMICOLON);
+			robot.keyRelease(KeyEvent.VK_SHIFT);
+			break;
+			
+			default:
+				//The following 4 lines will type a capital
+				//letter from the lookup table.
+				//robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(ch);
+				robot.keyRelease(ch);
+				//robot.keyRelease(KeyEvent.VK_SHIFT);
+				System.out.println(ch);
+				break;
+		}
 	}
 }
